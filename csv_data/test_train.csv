@@ -1,0 +1,2476 @@
+code1_path,code2_path,code1,code2,similar
+./train_code/problem393/problem393_19.cpp,./train_code/problem033/problem033_439.cpp,"#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using vl = vector<ll>;
+using pll = pair<ll, ll>;
+
+#define rep(i, n) for (ll i = 0, xxx_rep_end = (n); i < xxx_rep_end; ++i)
+#define all(x) (x).begin(), (x).end()
+
+template <class T1, class T2>
+inline bool chmax(T1 &a, const T2 &b) {
+    if (a < b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+template <class T1, class T2>
+inline bool chmin(T1 &a, const T2 &b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+constexpr ll INF = 0x3f3f3f3f3f3f3f3fLL;
+constexpr ll mod = 1000000007;
+
+int main() {
+    ll S;
+    cin >> S;
+    for (int i = 0; i < 3; ++i) {
+        if (S % 10 == 7) {
+            cout << ""Yes"" << endl;
+            return 0;
+        }
+        S /= 10;
+    }
+    cout << ""No"" << endl;
+}","#include <algorithm>
+#include <bitset>
+#include <complex>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <typeinfo>
+#include <utility>
+#include <valarray>
+#include <vector>
+#include <climits>
+#include <cstring>
+
+#define rep(i, m, n) for(int i=int(m);i<int(n);i++)
+#define all(c) begin(c),end(c)
+
+template<typename T1, typename T2>
+inline void chmin(T1 &a, T2 b) { if (a > b) a = b; }
+
+template<typename T1, typename T2>
+inline void chmax(T1 &a, T2 b) { if (a < b) a = b; }
+
+//改造
+typedef long long int ll;
+using namespace std;
+#define INF (1 << 30) - 1
+#define INFl (ll)5e15
+#define DEBUG 0 //デバッグする時1にしてね
+#define dump(x)  cerr << #x << "" = "" << (x) << endl
+#define MOD 1000000007
+
+
+//ここから編集する
+class Solve {
+public:
+    void input() {
+
+    }
+
+    void solve() {
+        input();
+        int n;
+        cin >> n;
+        if (n == 0) return;
+
+        vector<int> v(n);
+        rep(i, 0, n) cin >> v[i];
+        sort(all(v));
+
+        int ans = v[1] - v[0];
+        for (int i = 0; i + 1 < n; ++i) {
+            chmin(ans, v[i + 1] - v[i]);
+        }
+        cout << ans << endl;
+        solve();
+    }
+};
+
+
+int main() {
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+    cout << fixed << setprecision(10);
+
+    Solve().solve();
+
+
+    return 0;
+}
+
+",0
+./train_code/problem019/problem019_210.cpp,./train_code/problem019/problem019_63.cpp,"#include <iostream>
+
+using namespace std;
+
+int main(void) {
+  int times,h;
+  string card,temp1,temp2;
+  while(cin >> card && card[0] != '-') {
+    cin >> times;
+    for(int i = 0; i < times; i++) {
+      cin >> h;
+      temp1 = card.substr(0, h);
+      temp2 = card.substr(h, card.length());
+      card = temp2 + temp1;
+    }
+    cout << card << endl;
+  }
+  return 0;
+}","#include <iostream>
+#include <string>
+using namespace std;
+int main(void)
+{
+    int m,h,i;
+    string str;
+    cin >> str;
+    while(str != ""-"") {
+        cin >> m;
+        for(i=0;i<m;i++) {
+            cin >> h;
+            string left = str.substr(0,h);
+            str.erase(0,h);
+            str+=left;
+        }
+        cout << str << endl;
+        cin >> str;
+    }
+}
+",1
+./train_code/problem107/problem107_486.cpp,./train_code/problem107/problem107_340.cpp,"#include <iostream>
+#include <vector>
+using namespace std;
+
+const static int MAX = 16;
+int field[MAX+1][MAX+1];
+
+int rec(int x,int y,int w,int h) {
+  if(x == w && y == h) {
+    return 1;
+  }
+  else if(x > w || y > h) {
+    return 0;
+  }
+  else if(field[x][y] == -1) {
+    return 0;
+  }
+  return rec(x+1,y,w,h) + rec(x,y+1,w,h);
+}
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+
+  int w,h,m;
+  while(cin >> w >> h) {
+    if( w+h == 0 ) break;
+    for(int i=1;i<=h;i++) {
+      for(int j=1;j<=w;j++) {
+        field[i][j] = 0;
+      }
+    }
+    cin >> m;
+    for(int i=0;i<m;i++) {
+      int x,y;
+      cin >> x >> y;
+      field[x][y] = -1;
+    }
+
+    cout << rec(1,1,w,h) << endl;
+  }
+}","#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <climits>
+#include <cfloat>
+#include <cstring>
+#include <map>
+#include <utility>
+#include <set>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <sstream>
+#include <complex>
+#include <stack>
+#include <queue>
+
+#define FOR(i,b,n) for(int i=b;i<n;i++)
+#define RFOR(i,b,n) for(int i=n-1;i>=b;i--)
+#define CLR(mat) memset(mat, 0, sizeof(mat))
+#define NCLR(mat) memset(mat, -1, sizeof(mat))
+
+using namespace std;
+
+static const double EPS = 1e-9;
+typedef long long ll;
+typedef pair<int, int> paii;
+
+int a, b, n;
+bool con[100][100] = {0};
+
+int solve()
+{
+	int dp[100][100];
+	CLR(dp);
+	dp[1][1] = 1;
+	
+	FOR(j, 1, b+1)
+		FOR(i, 1, a+1)
+		{
+			if( con[j][i] == true )
+			{
+				dp[j][i] = 0;
+			}
+			else
+			{
+				dp[j][i] += dp[j-1][i] + dp[j][i-1];
+			}
+		}
+	
+	return dp[b][a];
+}
+	
+int main()
+{
+	while(cin >> a >> b, (a||b))
+	{
+		CLR(con);
+		cin >> n;
+		
+		FOR(i, 0, n)
+		{
+			int x, y;
+			cin >> x >> y;
+			con[y][x] = true;
+		}
+			
+		cout << solve() << endl;
+	}
+	
+	return 0;
+}",1
+./train_code/problem187/problem187_257.cpp,./train_code/problem403/problem403_135.cpp,"#include <bits/stdc++.h>
+#include <unordered_map>
+#include <unordered_set>
+#define initdp(a, b)  for (int i = 0; i <= a; i++)   for (int j = 0; j <= b; j++) dp[i][j] = -1;
+#define pb push_back
+#define mpr make_pair
+#define pii pair<int, int>
+#define ll long long
+#define pll pair<ll, ll>
+#define all(arr) arr.begin(), arr.end()
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define repd(i, n) for (int i = n - 1; i >= 0; i--)
+#define fo(i, l, r) for (int i = l; i <= r; i++)
+#define INF 1000000001
+#define inf1 1000000000000000001
+#define mod 1000000007
+#define pie 3.14159265358979323846264338327950L
+#define N 1000005
+#define mid(l, r) l + (r - l) / 2
+#define vec vector<int>
+#define vecl vector<ll>
+#define umap unordered_map<ll,ll>
+#define yes cout << ""YES"" << endl;
+#define no cout << ""NO"" << endl;
+#define endl ""\n""
+using namespace std;
+
+ll gcd(ll a, ll b) {
+    if(b==0)
+        return a;
+    return gcd(b, a%b);
+}
+ 
+
+ 
+ 
+void solve(){
+ 
+  int n,M;
+    cin>>n>>M;
+    int a,b;
+    if(M%2==0){
+        a=M/2;
+        b=M/2;
+    }else{
+        a=M/2;
+        b=M-a;
+    }
+    for(int i=1;i<=a;++i){
+        cout<<i<<"" ""<<2*a+2-i<<endl;
+    }
+    for(int i=1;i<=b;++i){
+        cout<<i+2*a+1<<"" ""<<M*2+2-i<<endl;
+    }
+
+
+}
+ 
+ 
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    cout<<fixed<<setprecision(20);
+    int t = 1;
+   //  cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+}","#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  int a, b; cin >> a >> b;
+  int mini = min(a, b);
+  int maxi = max(a, b);
+  cout << string(maxi, '0'+mini);
+  return 0;
+}
+",0
+./train_code/problem173/problem173_490.cpp,./train_code/problem173/problem173_345.cpp,"#include <bits/stdc++.h>
+typedef long long ll;
+using namespace std;
+vector<ll> divisor(ll n) {
+	vector<ll> res;
+	for (ll i = 1; i * i <= n; i++) {
+		if (n % i == 0) {
+			res.push_back(i);
+			if (i * i != n)
+				res.push_back(n / i);
+		}
+	}
+	sort(res.begin(), res.end());
+	return res;
+}
+int main() {
+	ll n;
+	cin >> n;
+	auto f = divisor(n);
+	ll ans = 0;
+	for (ll v : f) {
+		ll m = v - 1;
+		ll x = n / v;
+		if (x < m) {
+			ans += m;
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}","#include ""bits/stdc++.h""
+#define rep(i,n) for(int i = 0; i < (n); ++i)
+using namespace std;
+typedef long long int ll;
+typedef pair<int, int> P;
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+
+vector<ll> divisor(ll n){
+	vector<ll> res;
+	for(ll i = 1; i*i <= n; i++){
+		if(n%i == 0){
+			res.push_back(i);
+			if(i != n/i) res.push_back(n/i);
+		}
+	}
+	return res;
+}
+
+int main(){
+	cin.tie(0);
+	ios::sync_with_stdio(false);
+	ll n;
+	cin >> n;
+	ll ans = 0;
+	for(auto p : divisor(n)){
+		if(p == 1) continue;
+		if(n/(p-1) == n%(p-1)) ans += p-1;
+	}
+	cout << ans << endl;
+	return 0;
+}",1
+./train_code/problem220/problem220_399.cpp,./train_code/problem448/problem448_487.cpp,"#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+using namespace std;
+typedef long long ll;
+#define rep(i, n) for (int i=0;i < (int)(n);i++)
+
+int main(){
+    string s;
+    int d;
+    int v[3];
+    rep(i,3){
+       cin >> v[i];
+    }
+    cin >> d;
+    if (max(v[0],v[2])-min(v[0],v[2]) <= d){
+       cout << ""Yes"" << endl;
+       return 0;
+    }
+    if (abs(v[0]-v[1]) <= d  && abs(v[1]-v[2]) <= d ) cout << ""Yes"" << endl;
+    else cout << ""No"" << endl; 
+    return 0;
+
+}","#include<bits/stdc++.h>
+using namespace std;
+
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define pb push_back
+
+typedef long long ll;
+typedef pair<int,int> pi;
+typedef vector<int> vi;
+
+const int mod=1e9+7;
+
+int main(){
+	int n;
+	cin>>n;
+
+	cout<<180+(n-3)*180<<endl;
+}
+",0
+./train_code/problem387/problem387_211.cpp,./train_code/problem387/problem387_188.cpp,"#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<ll, ll> l_l;
+typedef pair<int, int> i_i;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define EPS (1e-7)
+#define INF (1e9)
+#define PI (acos(-1))
+
+const ll mod = 998244353;
+
+ll safePow(ll x, ll y){
+    ll result = 1;
+    rep(i, y){
+        result = (result * x) % mod;
+    }
+    return result;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> d(n);
+    rep(i, n) cin >> d[i];
+    if(d[0] != 0){
+        cout << 0 << endl;
+        return 0;
+    }
+    sort(d.begin(), d.end());
+    if(d[1] != 1){
+        cout << 0 << endl;
+        return 0;
+    }
+
+    ll cnt = 0, cur_d = 0, prev_cnt = 1;
+    ll ans = 1;
+    rep(i, n){
+        if(d[i] == cur_d){
+            cnt++;
+        } else {
+            if(d[i] != cur_d + 1){
+                ans = 0;
+                break;
+            }
+            ans = (ans * safePow(prev_cnt, cnt)) % mod;
+            prev_cnt = cnt;
+            cnt = 1;
+            cur_d++;
+        }
+        if(i == n - 1){
+            ans = (ans * safePow(prev_cnt, cnt)) % mod;
+        }
+    }
+    cout << ans << endl;
+
+    
+    return 0;
+}
+","#include <bits/stdc++.h>
+using namespace std;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define all(v) v.begin(), v.end()
+#define int long long
+#define _GLIBCXX_DEBUG
+
+signed main() {
+  int N; cin >> N;
+  vector<int> D(N);
+  rep(i, N) cin >> D[i];
+  
+  if(D[0] != 0) {
+    cout << 0 << endl;
+    return 0;
+  }
+  
+  sort(all(D));
+  
+  int ans = 1;
+  vector<int> num(N, 0);
+  
+  
+  num[D[0]]++;
+  rep(i, N) {
+    if(i == 0) continue;
+    if(D[i] == 0 || num[D[i]-1] == 0) {
+      cout << 0 << endl;
+      return 0;
+    }
+    num[D[i]]++;
+    ans *= num[D[i]-1];
+    ans %= 998244353;
+  }
+  cout << ans << endl;
+    
+  
+}",1
+./train_code/problem297/problem297_392.cpp,./train_code/problem047/problem047_481.cpp,"#include<bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using P = pair<int,int>;
+using Pl = pair<ll,ll>;
+#define REP(i,n) for(ll i = 0;i < (ll)n;i++)
+#define REPD(i,n) for(ll i = (ll)n - 1;i >= 0;i--)
+#define ALL(x) (x).begin(),(x).end()
+#define FILLl(n,first_dimension_size,value) fill((ll*)n,(ll*)(n+first_dimension_size),value)
+#define FILL(n,first_dimension_size,value) fill((int*)n,(int*)(n+first_dimension_size),value)
+#define INF (1 << 30)
+#define MOD 1000000007
+//int dy[4] = {-1,0,0,1};
+//int dx[4] = {0,1,-1,0};
+
+
+int main(){
+
+  string s,t,u;
+  cin >> s >> t >> u;
+  if(s[s.size()-1] == t[0] && t[t.size()-1] == u[0] )cout << ""YES"" << endl;
+  else cout << ""NO"" << endl;
+
+
+
+
+  
+
+  return 0;
+}
+","#include<iostream>
+#include<vector>
+using namespace std;
+typedef long long li;
+#define repa(i,a,n) for(int i=(a);i<(n);i++)
+#define rep(i,n) for(int i=0;i<(n);i++)
+#define df 0
+template<class T> void print(const T& t){ cout << t << ""\n""; }
+template<class T, class... Ts> void print(const T& t, const Ts&... ts) { cout << t; if (sizeof...(ts)) cout << "" ""; print(ts...); }
+
+int main(){
+  int n; cin >>n;
+  vector<int> c(n-1),s(n-1),f(n-1);
+  rep(i,n-1){
+    cin >>c[i] >>s[i] >>f[i];
+  }
+  rep(j,n){
+    int t=0;
+    repa(i,j,n-1){
+      //      if(df)print(s[i],f[i]);
+      if(t<s[i])t=s[i];
+      if(t%f[i])t=(t/f[i]+1)*f[i];
+      t+=c[i];
+    }
+    print(t);
+  }
+}
+",0
+./train_code/problem130/problem130_490.cpp,./train_code/problem448/problem448_188.cpp,"#include <bits/stdc++.h>
+#define rep(i,n) for(int i=0;i<(n);i++)
+
+using namespace std;
+
+int main()
+{
+   int n;
+   cin>>n;
+   vector<int> p(n),q(n);
+   rep(i,n) cin>>p[i];
+   rep(i,n) cin>>q[i];
+   vector<int> a(n);
+   rep(i,n) a[i]=i+1;
+   
+   map<vector<int>, int> mp;
+  int j=1;
+   do{
+       mp[a] = j;
+     j++;
+   }while(next_permutation(a.begin(),a.end()));
+   
+   int ans = abs(mp[p] - mp[q]);
+   cout<<ans<<endl;
+   
+   return 0;
+}","#include <bits/stdc++.h>
+using namespace std;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+using ll = long long;
+using P = pair<string,int>;
+const double PI = acos(-1);
+
+int main() {
+int n;
+cin >> n;
+int ans = 180*(n-2);
+cout << ans << endl;
+}
+",0
+./train_code/problem208/problem208_14.cpp,./train_code/problem208/problem208_197.cpp,"#include ""bits/stdc++.h""
+using namespace std;
+typedef long long LL;
+LL MOD = 1000000007LL;
+LL a[50];
+int main() {
+	LL K;
+	cin >> K;
+	LL q = K / 50, r = K % 50;
+	for (int i = 0; i < 50; i++) {
+		a[i] = i + q;
+		if (i < r) a[i] += 50 - (r - 1);
+		else a[i] -= r;
+	}
+	cout << 50 << endl;
+	cout << a[0];
+	for (int i = 1; i < 50; i++) {
+		cout << "" "" << a[i];
+	}
+	cout << endl;
+}","#include<bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+#define rep(i,n) for(int i=0;i<(n);i++)
+#define pb push_back
+#define all(v) (v).begin(),(v).end()
+#define fi first
+#define se second
+typedef vector<int>vint;
+typedef pair<int,int>pint;
+typedef vector<pint>vpint;
+
+template<typename A,typename B>inline void chmin(A &a,B b){if(a>b)a=b;}
+template<typename A,typename B>inline void chmax(A &a,B b){if(a<b)a=b;}
+
+
+int calc(vint A){
+    int N=A.size();
+    int ans=0;
+    while(true){
+        int latte=0;
+        rep(i,N){
+            if(A[i]<N)continue;
+            int tmp=A[i]-(N-1);
+            tmp=(tmp+N)/(N+1);
+            latte+=tmp;
+            A[i]-=tmp*(N+1);
+        }
+        if(latte==0)break;
+        rep(i,N)A[i]+=latte;
+        ans+=latte;
+    }
+
+    return ans;
+}
+
+
+signed main(){
+    vint A(50,10000000000000000ll+1000);
+
+    int K;cin>>K;
+
+    K=calc(A)-K;
+
+    rep(i,50)A[i]+=K-K/50*51;
+    rep(i,K%50)A[i]-=51;
+
+    cout<<50<<endl;
+    rep(i,50){
+        if(i)cout<<"" "";
+        cout<<A[i];
+    }cout<<endl;
+    return 0;
+}
+",1
+./train_code/problem371/problem371_125.cpp,./train_code/problem165/problem165_205.cpp,"#include <bits/stdc++.h>
+#define rep(i,n) for(long long i=0; i<n; i++)
+#define Rep(i,n) for(long long i=1; i<n; i++)
+#define ll long long
+#include <math.h>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <vector>
+
+
+using namespace std;
+#define PI acos(-1)
+
+int main(){
+ 
+ 
+  string s;
+  cin>>s;
+  ll n=s.size();
+  rep(i,n){
+      if(s[i]!=s[n-1-i]){
+          cout<<""No""<<endl;
+          return 0;
+      }
+  }
+  
+  rep(i,(n-1)/2){
+     if(s[i]!=s[(n-1)/2-1-i]){
+          cout<<""No""<<endl;
+          return 0;
+      } 
+  }
+  
+  cout<<""Yes""<<endl;
+  
+  
+ 
+}
+
+","#include<iostream>
+#include<string>
+using namespace std;
+
+int to_int(string s){
+	int p=0;
+	int res=0;
+	while(p<s.size()){
+		int count=1;
+		if(isdigit(s[p])){
+			count=s[p]-'0';
+			p++;
+		}
+		if(s[p]=='m') res+=count*1000;
+		else if(s[p]=='c') res+=count*100;
+		else if(s[p]=='x') res+=count*10;
+		else if(s[p]=='i') res+=count;
+		p++;
+	}
+	return res;
+}
+
+string to_string(int n){
+	string res="""";
+	if(n/1000>0){
+		if(n/1000>1) res+='0'+n/1000;
+		res+='m';
+		n%=1000;
+	}
+	if(n/100>0){
+		if(n/100>1) res+='0'+n/100;
+		res+='c';
+		n%=100;
+	}
+	
+	if(n/10>0){
+		if(n/10>1) res+='0'+n/10;
+		res+='x';
+		n%=10;
+	}
+	if(n>0){
+		if(n>1) res+='0'+n;
+		res+='i';
+	}
+	return res;
+
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	for(int i=0;i<n;i++)
+	{
+		string s1,s2;
+		cin>>s1>>s2;
+		cout<<to_string(to_int(s1)+to_int(s2))<<endl;
+	}
+	return 0;
+}",0
+./train_code/problem418/problem418_273.cpp,./train_code/problem370/problem370_48.cpp,"#include <vector>
+#include <map>
+#include <set>
+#include <stack>
+#include <queue>
+#include <algorithm>
+#include <utility>
+#include <functional>
+#include <sstream>
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <cctype>
+#include <string>
+#include <cstring>
+#include <ctime>
+#include <climits>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+inline int toInt(string s) { int v; istringstream sin(s); sin >> v; return v; }
+template<class T> inline string toStr(T x) { ostringstream sout; sout << x; return sout.str(); }
+typedef vector<int> vi;
+typedef vector<vi>  vvi;
+typedef vector<string> vs;
+typedef pair<int, int> pii;
+typedef long long ll;
+#define ALL(a) (a).begin(),(a).end()
+#define RALL(a) (a).rbegin(),(a).rend()
+#define FOR(i,a,b) for(int i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,(n))
+const double EPS = 1e-10;
+const double PI = acos(-1.0);
+const int INF = INT_MAX / 2;
+const int MOD = 1000000007;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+int main() {
+	int N, K;
+	string S;
+	cin >> N >> S >> K;
+
+	REP(i, N) {
+		if (S[i] != S[K - 1]) {
+			S[i] = '*';
+		}
+	}
+
+	cout << S << endl;
+	return 0;
+}","#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<cmath>
+#include<vector>
+#include<map>
+#include<set>
+#include<string>
+#include<queue>
+#include<stack>
+using namespace std;
+#define MOD 1000000007
+#define INF (1<<29)
+#define LINF (1LL<<60)
+#define EPS (1e-10)
+typedef long long Int;
+typedef pair<Int, Int> P;
+
+class WeightedUnionFind{
+public:
+  int n;
+  vector<int> u;
+  vector<Int> weight;
+  WeightedUnionFind(int n = 0):n(n){
+    u = vector<int>(n);
+    weight = vector<Int>(n,0);
+    for(int i = 0;i < n;i++)u[i] = i;
+  }
+  int r(int x){
+    if(u[x] == x)return x;
+    r(u[x]);
+    weight[x] += weight[u[x]];
+    return u[x] = r(u[x]);
+  }
+
+  Int dif(Int x, Int y){
+    if(r(x) != r(y))return INF;
+    return weight[x] - weight[y];
+  }
+
+  //x - y == w
+  bool isOK(int x, int y, Int w){
+    if(r(x) != r(y))return false;
+    return dif(x,y) == w;
+  }
+
+  int unite(int x, int y, Int w){
+    r(x);
+    r(y);
+    w += weight[y];
+    w -= weight[x];
+    x = r(x);
+    y = r(y);
+    u[x] = y;
+    weight[x] = w;
+  }
+};
+
+void ok(){
+  cout << ""Yes"" << endl;
+  exit(0);
+}
+
+void ng(){
+  cout <<  ""No"" << endl;
+  exit(0);
+}
+
+Int n, m, l, r, d;
+int main(){
+  cin >> n >> m;
+  WeightedUnionFind wuf(n);
+  for(int i = 0;i < m;i++){
+    cin >> l >> r >> d;l--, r--;
+    if(wuf.r(l) == wuf.r(r)){
+      if(!wuf.isOK(r, l, d))ng();
+    }
+    else{
+      wuf.unite(r, l, d);
+    }
+  }
+  ok();
+  return 0;
+}",0
+./train_code/problem279/problem279_497.cpp,./train_code/problem313/problem313_236.cpp,"#include<bits/stdc++.h>
+using namespace std;
+typedef long long  ll ;
+typedef double db;
+const double pi = 3.141592654;
+#define pb         push_back
+#define forab(i,a,b)       for(int i=(a);i<=(b);i++)
+#define CIN	ios_base::sync_with_stdio(0); cin.tie(0)
+#define pcase(z,x)     printf(""Case %ld: %lld\n"",z,x)
+#define nw	 ""\n""
+#define mod 1000000007
+
+
+int main(void)
+{
+	CIN;
+	ll tc,l,k=0,sum=0,x=0,y,z=0,m=1,n=0,ans=0,cnt=0;
+	string s;
+	cin>>s;
+	int t[2]={};
+	for(ll i=0;i<s.size();i++)
+		t[s[i]-'0']++;
+	cout<<min(t[0],t[1])*2<<nw;
+}","#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+using Graph = vector<vector<ll>>;
+using P = pair<int,int>;
+#define MOD 1000000007
+#define INF 1000000
+#define PI 3.14159265358979323846264338327950L
+#define MAX_N 100010
+
+/*
+Union Find Tree
+
+何回でもスワップできるので、
+スワップできるのもの同士を同じグループにする
+同じグループだったら好きなところに移動できるって証明できる・・・？？
+直感的にはできるぽい
+*/
+
+int par[MAX_N];//親の番号
+int rnk[MAX_N];//ランク
+
+void init(int n)
+{
+  //根の定義・・・par[i]=iの時iを根という
+  //最初全てが根
+  for (int i=0;i<n;i++){
+    par[i]=i;
+    rnk[i]=0;
+  }
+}
+
+//木の根を求める
+int root(int x){
+  if (par[x]==x){  //xが根の時
+    return (x); 
+  }else{
+    par[x]=root(par[x]);//xを、xの親の根につなぎ直す
+    return par[x]; //経路圧縮
+  }
+}
+
+//x,yが同じ集合に属しているか、つまり同じ根に繋がっているか
+bool same(int x,int y){
+  return ( root(x)==root(y) );
+}
+
+//x,yの属する集合を合併する
+bool merge(int x, int y) {
+   x = root(x); y = root(y);
+   if (x == y) return false;
+   if (rnk[x] < rnk[y]) swap(x, y);
+   if (rnk[x] == rnk[y]) rnk[x]++;
+   //ランクがxの方が大きい時はrnk[x]に変わりがないが、同じ時は変わるので++が必要
+   par[y] = x; //ランクが大きい方に小さい方を繋げる
+   return true;
+}
+
+int main()
+{
+  int N,M;cin>>N>>M;
+  vector<ll> p(N+1);
+  for (int i=1;i<=N;i++)
+    cin>>p[i];
+  
+  init(N);
+  
+  for (int i=1;i<=M;i++)
+  {
+    int x,y;cin>>x>>y;
+    //p[x],p[y]はスワップできるので同じグループに
+    merge(p[x],p[y]);
+  }
+  
+  int count=0;
+  for (int i=1;i<=N;i++)
+  {
+    //p[i],iが同じ木にいたら、p[i]はi番目に移動できる
+    if (same(p[i],i)) count++;
+  }
+  cout<<count<<endl;
+}",0
+./train_code/problem417/problem417_475.cpp,./train_code/problem078/problem078_277.cpp,"#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const ll INF = 1LL << 60;
+ll MOD = 1000000000 + 7;
+
+bool debug = 0;
+
+void solve() {
+    string s;
+    cin >> s;
+    int cnt = 0;
+    for (int i = 0; i < (int)s.size() - 1; i++) {
+        if (s[i] != s[i + 1]) cnt++;
+    }
+    cout << cnt << endl;
+}
+
+int main() {
+    if (debug) {
+        while (true) {
+            cout << ""********"" << endl;
+            solve();
+        }
+    } else {
+        solve();
+    }
+    return 0;
+}","#include <iostream>
+#include <string>
+#include <map>
+#include <set>
+using namespace std;
+int main(){
+    string s,t;
+    map<char,char> mp;
+    set<char> sti, sto;
+    cin >> s >> t;
+    int n = s.size();
+    for(int i = 0; i < n; ++i){
+        char c = s[i];
+        if(sti.count(c) == 1){
+            if(mp[c] != t[i]){
+                puts(""No"");
+                return 0;
+            }
+        }
+        else{
+            sti.insert(c);
+            if(sto.count(t[i]) == 1){
+                puts(""No"");
+                return 0;
+            }
+            mp[c] = t[i];
+            sto.insert(t[i]);
+        }
+    }
+    puts(""Yes"");
+    return 0;
+}",0
+./train_code/problem499/problem499_269.cpp,./train_code/problem290/problem290_491.cpp,"#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <iomanip>
+#include <numeric>
+#include <queue>
+#include <cmath>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	long long int res = 0;
+	unordered_map<string, int> um;
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		sort(s.begin(), s.end());
+		res += um[s];
+		um[s]++;
+	}
+	cout << res << endl;
+}
+","#include <iostream>
+#include <algorithm>
+#include <string>
+#include <stack>
+#include <queue>
+#include <vector>
+#include <set>
+#include <cmath>
+#define FOR(i,a,b) for(int i=a;i<b;i++)
+#define ROF(i,a,b) for(int i=b-1;i>=a;i--)
+#define FI first
+#define SE second
+#define MA(i,j) make_pair(i,j)
+#define PA pair<int,int>
+#define PB push_back
+#define PQ priority_queue<int>
+#define PGQ priority_queue<int,vector<int>,greater<int> >
+#define VE vector<int>
+#define VP vector<PA>
+#define YES(i) cout<<(i?""YES"":""NO"")<<endl
+#define Yes(i) cout<<(i?""Yes"":""No"")<<endl
+#define MOD 1000000007
+#define INF 1000000007
+using namespace std;
+//
+int main(){
+  long long N,M;
+  long long X[100001],Y[100001];
+  cin>>N>>M;
+  FOR(i,1,N+1){
+    cin>>X[i];
+  }
+  FOR(i,1,M+1){
+    cin>>Y[i];
+  }
+  sort(X+1,X+N+1);
+  sort(Y+1,Y+M+1);
+  long long sumx=0,sumy=0;
+  FOR(i,1,N+1){
+    (sumx+=(i-1)*X[i]-(N-i)*X[i])%=MOD;
+  }
+  FOR(i,1,M+1){
+    (sumy+=(i-1)*Y[i]-(M-i)*Y[i])%=MOD;
+  }
+  cout<<sumx*sumy%MOD<<endl;
+  return 0;
+}
+",0
+./train_code/problem034/problem034_332.cpp,./train_code/problem406/problem406_438.cpp,"#include <bits/stdc++.h>
+using namespace std;
+
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+
+#define rep(i,cc,n) for(int i=cc;i<n;++i)
+#define lrep(i,cc,n) for(long long i=cc;i<n;++i)
+#define sqrep(i,cc,n) for(long long i=cc;i*i<=n;++i)
+#define rrep(i,cc,n) for(long i=cc;i>n;--i)
+#define pii pair<int, int>
+#define pll pair<long long, long long>
+ 
+using ll = long long;
+
+const vector<int> dx = {1, 0, -1, 0};
+const vector<int> dy = {0, 1, 0, -1};
+const ll inf = 1001001001;
+const ll e9  = 1000000000;
+const ll mod = 1000000007;
+
+ll gcd(ll x, ll y) { return (x % y)? gcd(y, x % y): y; }
+
+int main() {
+   int n;
+   cin >> n;
+   vector<ll>b(n);
+   set<ll>a;
+   cin >> b[0];
+   ll g = b[0],ans=b[0];
+   rep(i, 1, n){
+      ll c = a.size();
+      cin >> b[i];
+      a.insert(b[i]);
+      if(a.size()>c){
+         g = gcd(ans,b[i]);
+         ans = ans*(b[i]/g);
+      }
+   }
+   cout << ans << endl;
+}","#include <bits/stdc++.h>
+
+using namespace std;
+#define ll long long
+
+#define N 100005
+ll in[N];
+void solve() {
+    ll ret = 0;
+    int n;scanf(""%d"",&n);
+    for(int i=0;i<n;++i) {
+        scanf(""%lld"",&in[i]);
+        ret ^=in[i];
+    }
+    for(int i=0;i<n;++i) {
+        ll tmp = in[i]&ret;
+        in[i] -= tmp;
+    }
+    sort(in,in+n,greater<ll>());
+    int pos = 0;
+    for(int i=60;i>=0;--i) {
+        int ind = -1;ll tmp = -1e18;
+        for(int j=pos;j<n;++j) {
+            if(in[j]&(1LL<<i)   && tmp<in[j]) {
+                swap(in[pos],in[j]);
+                tmp = in[j];
+                break;
+            }
+        }
+        if(tmp==-1e18) {
+            int cc = 0;
+            for(int j = 0;j<pos;++j) {
+                if(in[j]&(1LL<<i)) {
+                    ++cc;
+                }
+            }
+            if(cc&1) {
+                ret += (1LL<<i)*2;
+            }
+            continue;
+        }
+        ll org = in[pos];
+        in[ind] = 0;
+        ret += (1LL<<i)*2;
+        for(int j=0;j<n;++j) {
+            if(in[j]&(1LL<<i) && j!=pos) {
+                in[j]^= org;
+            }
+        }
+        ++pos;
+    }
+    printf(""%lld\n"",ret);
+}
+int main() {
+    //freopen(""input.txt"",""r"",stdin);
+    solve();
+    return 0;
+}",0
+./train_code/problem409/problem409_266.cpp,./train_code/problem409/problem409_495.cpp,"#include<iostream>
+
+using namespace std;
+
+int main(){
+  int n, m;
+  int data[128];
+  char x, y;
+  char z;
+  while(1){
+    cin >> n;
+      if (n == 0) break;
+      else {
+	for(int i = 0; i< 128; i++){
+	  data[i] = i;
+	}
+	for(int i = 0; i< n; i++){
+	  cin >> x >> y;
+	  data[static_cast<int>(x)] = static_cast<int>(y);
+	}
+	
+	cin >> m;
+	for (int i= 0; i< m; i++){
+	  cin >> z;
+	  cout<< static_cast<char>(data[static_cast<int>(z)]);
+	}
+	cout <<""\n"";
+      }
+  }
+  return 0;
+}","#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+	int n1,n2;
+	char buf,*cf,*ct,*re;
+
+	while(1){
+		cin >> n1;
+		if(n1 != 0){
+			cf = new char[n1];
+			ct = new char[n1];
+
+			for(int i = 0; i < n1; i++){
+				cin >> cf[i];
+				cin >> ct[i];
+			}
+
+			cin >> n2;
+			re = new char[n2];
+
+			for(int i = 0; i < n2; i++){
+				cin >> buf;
+
+				for(int j = 0; j < n1; j++){
+					if(buf == cf[j]){
+						buf = ct[j];
+						break;
+					}
+				}
+
+				re[i] = buf;
+			}
+
+			for(int i = 0; i < n2; i++){
+				cout << re[i];
+			}
+			cout << endl;
+		}else{
+			break;
+		}
+	}
+
+	return 0;
+}",1
+./train_code/problem373/problem373_223.cpp,./train_code/problem373/problem373_313.cpp,"#include <iostream>
+#include <cstdio>
+#include <string>
+#include <algorithm>
+#include <utility>
+#include <cmath>
+#include <vector>
+#include <queue>
+#include <set>
+#include <map>
+#include <functional>
+using namespace std;
+typedef long long ll;
+typedef vector<ll> vl;
+typedef vector<vector<ll>> vvl;
+typedef vector<vector<pair<ll, ll>>> vvpll;
+#define rep(i, n) for(ll i = 0; i < n; i++)
+#define exrep(i, a, b) for(ll i = a; i <= b; i++)
+#define out(x) cout << x << endl
+#define exout(x) printf(""%.10f\n"", x)
+#define chmax(x, y) x = max(x, y)
+#define chmin(x, y) x = min(x, y)
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+#define pb push_back
+#define re0 return 0
+const ll mod = 1000000007;
+const ll INF = 1e16;
+const ll MAX_N = 100010;
+
+int main() {
+    ll n, k;
+    cin >> n >> k;
+
+    vector<pair<ll, ll>> p(n);  // p[i] : (おいしさ, ネタの種類)
+    rep(i, n) {
+        ll t, d;
+        cin >> t >> d;
+        p[i] = make_pair(d, t);
+    }
+    sort(rall(p));
+
+    map<ll, ll> mp;
+    priority_queue<ll, vector<ll>, greater<ll>> prQ;  // 小さい要素から順に取り出す
+    ll sumD = 0;
+    rep(i, k) {
+        sumD += p[i].first;
+        mp[p[i].second]++;
+        if(mp[p[i].second] >= 2) {
+            prQ.push(p[i].first);
+        }
+    }
+    ll x = mp.size();
+    ll ans = sumD + x*x;
+
+    exrep(i, k, n-1) {
+        if(prQ.empty()) {
+            break;   
+        }
+        mp[p[i].second]++;
+        if(mp[p[i].second] >= 2) {
+            mp[p[i].second]--;
+            continue;
+        }
+        sumD += p[i].first - prQ.top();
+        prQ.pop();
+        x++;
+        ll now = sumD + x*x;
+        chmax(ans, now);
+    }
+
+    out(ans);
+    re0;
+}","#include <bits/stdc++.h>
+using namespace std;
+const int MAXN = 100010;
+
+int main()
+{
+  int64_t N, K, t, d;
+  cin >> N >> K;
+  vector<priority_queue<int64_t>> vpq(MAXN);
+  for (int i = 0; i < N; i++)
+  {
+    cin >> t >> d;
+    vpq[t].push(d);
+  }
+  priority_queue<pair<int64_t, int64_t>> pq;
+  for (int i = 0; i < MAXN; i++)
+  {
+    if (vpq[i].empty())
+      continue;
+    pq.emplace(vpq[i].top(), 1);
+    vpq[i].pop();
+    while (vpq[i].size())
+    {
+      pq.emplace(vpq[i].top(), 0);
+      vpq[i].pop();
+    }
+  }
+  int64_t tmp = 0, ans = 0;
+  priority_queue<int64_t, vector<int64_t>, greater<int64_t>> pq0, pq1;
+  for (int i = 0; i < K; i++)
+  {
+    tmp += pq.top().first;
+    if (pq.top().second)
+      pq1.push(pq.top().first);
+    else
+      pq0.push(pq.top().first);
+    pq.pop();
+  }
+  tmp += pq1.size() * pq1.size();
+  ans = max(ans, tmp);
+  while (pq.size())
+  {
+    if (pq.top().second)
+    {
+      tmp -= pq1.size() * pq1.size();
+      if (pq0.empty())
+      {
+        cout << ans << endl;
+        return 0;
+      }
+      tmp -= pq0.top();
+      pq0.pop();
+      tmp += pq.top().first;
+      pq1.push(pq.top().first);
+      tmp += pq1.size() * pq1.size();
+    }
+    ans = max(ans, tmp);
+    pq.pop();
+  }
+  cout << ans << endl;
+}
+",1
+./train_code/problem044/problem044_414.cpp,./train_code/problem044/problem044_182.cpp,"				/*****************************************************
+ 				*	Logged in : HABIBUR RAHMAN						 *
+				*	Dept	  : COMPUTER SCIENCE AND ENGINEERING	 *
+				*													 *
+				*	KHULNA UNIVERSITY OF ENGINEERING AND TECHNOLOGY  *
+				******************************************************/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef unsigned long long int ull;
+typedef long double ld;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef vector<ull> vull;
+typedef vector<string> vs;
+typedef pair<ll,ll> pll;
+#define fast_io 			ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define all(v) 				v.begin(),v.end()
+#define allr(v) 			v.rbegin(),v.rend()
+#define rep(i,a,b) 			for(ll i=a;i<=b;i++)
+#define rep0(i,n)			for(ll i=0;i<n;i++)
+#define rrep0(i, n) 		for(ll i=(ll)(n);i>0;--i)
+#define rrep(i, a, b) 		for(ll i=(ll)(a);i>=(ll)(b);--i)
+#define pb(z) 				emplace_back(z)
+#define ff					first
+#define ss 					second
+#define caset 				int t;cin>>t;for(int tt=1;tt<=t;tt++)
+#define sz(X) 				((ll)(X).size())
+#define scan(X) 			scanf(""%s"", (X))
+#define ms(v,val)			memset((v),(val),sizeof((v)))
+#define ms0(X) 				memset((X), 0, sizeof((X)))
+#define ms1(X) 				memset((X), -1, sizeof((X)))
+#define m_p(a,b)            make_pair(a,b)
+#define get_pos(c,x) 		(lower_bound(c.begin(),c.end(),x)-c.begin())
+#define lcm(a,b)            (a*b)/__gcd(a,b)
+#define INF9                1000000010
+#define INF18               4000000000000000010
+#define bpll(a)             __builtin_popcountll(a)
+#define sqr(a)              ((a)*(a))
+#define nl					""\n""
+//#define mod					1e9+7;
+#define mx_el(v)			*max_element(all(v));
+#define mn_el(v)			*min_element(all(v));
+#define pcase(z,x)    		cout<<""Case ""<<z<<"": ""<<x<<""\n""
+const double pi = 2*acos(0) ;
+#define display(v)			vi :: iterator it;for(it=(v).begin();it!=(v).end();it++){cout << *it << "" "" ;}cout << endl;
+#define taking(n,v) 		for(ll i=0;i<(n);i++){ll inp;cin>>inp;(v).push_back(inp);}
+/*-------------------------some important functions--------------------------------------------------------------------*/
+ull binpow(ull b,ull n){if(n==0)return 1;if(n==1)return b;if(n&1) return binpow(b,n-1)*b;else return binpow(b*b,n/2);}
+ll bigmod(ll a,ll n,ll mod){if(n==0)return 1;ll res=bigmod(a,n/2,mod);if(n&1){return ((res%mod)*(res%mod)*a)%mod;}else return ((res%mod)*(res%mod))%mod;}
+/*--------------------------------------------x----------------------------------------------x--------------------------*/
+void start(){
+      #ifndef ONLINE_JUDGE 
+      freopen(""input.txt"" , ""r"" , stdin) ;
+      freopen(""output.txt"" , ""w"" , stdout) ;
+      #endif
+}
+void solve(){
+	ll n;cin>>n;
+	ll a[n+1];
+	rep0(i,n){
+		cin>>a[i];
+	}
+	ll cnt=a[0];
+	rep(i,1,n-1){
+		if(a[i]>=a[i-1]){
+			cnt+=(a[i]-a[i-1]);
+		}
+	}
+	cout << cnt << nl;
+}
+ 	 
+int main() {
+	fast_io
+	//start();
+    //caset{
+    	//cout << ""Case "" << tt << "": "";
+		  solve();
+	//}
+	
+	return 0;
+}","#include <iostream>
+#include <vector>
+#include <cstdlib>  
+#include <algorithm>
+#include <string>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    int n;cin>>n;
+    int h[n];
+    for(int i = 0;i<n;i++) cin>>h[i]; 
+    int ans = 0;
+    while(true){
+      int k0 = 0;
+      for(int i = 0;i<n;i++){
+        if(h[i] == 0) k0++;
+      }
+      if(k0 == n){
+        cout<<ans;
+        return 0;
+      }
+      int zgai = 0;//0以外が出た回数
+      int ss = 1000;//最小値
+      int soko = n;
+      for(int i = 0;i<n;i++){
+      	if(h[i] != 0){
+          zgai+= 1;
+          ss = min(ss,h[i]);
+        }
+        if(zgai != 0){
+          if(h[i] == 0){
+            soko = i;
+            break;
+          }
+        }
+      }
+      //cout<<ss<<endl;;
+      for(int i = 0;i<soko;i++){
+        if(h[i] == 0) continue;
+      	h[i]-=ss;
+      }
+      ans+= ss;
+    }
+    return 0;
+}",1
+./train_code/problem429/problem429_53.cpp,./train_code/problem429/problem429_397.cpp,"#include <iostream>
+using namespace std;
+
+int main(){
+	int n;
+	while ( cin >> n ){
+		if ( !n ) break;
+		int* a = new int[ n ];
+		for ( int i = 0; i < n; ++i ){
+			cin >> a[ i ];
+		}
+		int sum, max = a[ 0 ];
+		for ( int i = 0; i < n; ++i ){
+			sum = 0;
+			for ( int j = i; j < n; ++j ){
+			sum += a[ j ];
+			if ( sum > max ) max = sum;
+			}
+		}
+		cout << max << endl;
+		delete[] a;
+	}
+
+	return 0;
+}","#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n;
+	while(cin>>n){
+		if(n==0) break;
+		int a[n], S[n], sum=0;
+		for(int i=0;i<n;++i){
+			cin>>a[i];
+			sum+=a[i];
+			S[i]=sum;
+		}
+
+		long max=S[0];
+		for(int i=1;i<n;++i){
+			if(S[i]>max) max=S[i];
+			for(int j=0;j<i;++j){
+				if(S[i]-S[j]>max) max=S[i]-S[j];
+			}
+		}
+
+		cout<<max<<endl;
+	}
+
+	return 0;
+}",1
+./train_code/problem382/problem382_390.cpp,./train_code/problem040/problem040_165.cpp,"#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <random>
+#include <chrono>
+#include <atcoder/dsu>
+ 
+using namespace std;
+using namespace __gnu_pbds;
+using namespace atcoder;
+ 
+#define endl '\n'
+ 
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef tree<int, null_type,less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+ 
+template<typename T>
+static T randint(T lo, T hi){
+	return uniform_int_distribution<T>(lo, hi)(rng);
+}
+
+
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+ 
+	// freopen(""capastaty_input.txt"", ""r"", stdin);
+	// freopen(""output.txt"", ""w"", stdout);
+
+	int n, q;
+	cin >> n >> q;
+
+	dsu d(n);
+
+	for(int i = 0; i < q; i++){
+		int t, a, b;
+		cin >> t >> a >> b;
+
+		if(t == 0)
+			d.merge(a, b);
+		else
+			cout << d.same(a, b) << endl;
+	}
+
+	return 0;
+}
+","#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <set>
+#include <string>
+#include <bitset>
+#include <utility>
+#include <numeric>
+#include <queue>
+#include <stack>
+
+using ll = long long;
+using namespace std;
+
+constexpr int MOD = 1e9 + 7;
+constexpr ll MOD_LL = ll(1e9 + 7);
+
+int main(void) {
+	int n;
+	cin >> n;
+	
+	vector<int> d(n);
+	for(int i = 0; i < n; ++i) {
+		cin >> d[i];
+	}
+	
+	sort(d.begin(), d.end());
+	
+	int ans = 0;
+	for(int i = 1; i <= d.back(); ++i) {
+		int x = lower_bound(d.begin(), d.end(), i) - d.begin();
+		
+		if( x == n / 2 ) ans++;
+	}
+	
+	cout << ans << endl;
+	
+	return 0;
+}
+",0
+./train_code/problem283/problem283_91.cpp,./train_code/problem333/problem333_4.cpp,"#include<bits/stdc++.h>
+using namespace std;
+#define all(x) x.begin(), x.end()
+int main() {
+  string s;
+  cin >> s;
+  int n = s.size() + 1;
+  vector<int> v(n, 0);
+  for(int i = 0;i < n-1;i++) if(s[i] == '<') v[i+1] = v[i] + 1;
+  for(int i = n-2;i > - 1;i--) if(s[i] == '>') v[i] = max(v[i], v[i+1]+1);
+  cout << accumulate(all(v), 0LL) << endl;
+}","// 基本テンプレート
+// #define _GLIBCXX_DEBUG // for STL debug (optional)
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <string>
+#include <cstring>
+#include <deque>
+#include <list>
+#include <queue>
+#include <stack>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <complex>
+#include <cmath>
+#include <limits>
+#include <cfloat>
+#include <climits>
+#include <ctime>
+#include <cassert>
+#include <numeric>
+#include <fstream>
+#include <functional>
+#include <bitset>
+using namespace std;
+
+#define debug(...) fprintf(stderr, __VA_ARGS__)
+#define int long long int
+ 
+template<typename T> void chmax(T &a, T b) {a = max(a, b);}
+template<typename T> void chmin(T &a, T b) {a = min(a, b);}
+template<typename T> void chadd(T &a, T b) {a = a + b;}
+ 
+typedef pair<int, int> pii;
+typedef long long ll;
+ 
+int dx[] = {0, 0, 1, -1};
+int dy[] = {1, -1, 0, 0};
+const ll INF = 1001001001001001LL;
+const ll MOD = 1000000007LL;
+
+int acc[100010];
+signed main() {
+    int N, K;
+    while(cin >> N >> K, N || K) {
+        memset(acc, 0, sizeof(acc));
+        for(int i=0; i<N; i++) {
+            cin >> acc[i+1];
+            acc[i+1] += acc[i];
+        }
+
+        int ans = -INF;
+        for(int i=K; i<=N; i++) {
+            chmax(ans, acc[i] - acc[i-K]);
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
+
+",0
+./train_code/problem427/problem427_245.cpp,./train_code/problem325/problem325_241.cpp,"#include<bits/stdc++.h>
+using namespace std;
+template<typename T>inline T read(){
+	T f=0,x=0;char c=getchar();
+	while(!isdigit(c)) f=c=='-',c=getchar();
+	while(isdigit(c)) x=x*10+c-48,c=getchar();
+	return f?-x:x;
+}
+#define int long long
+namespace run{
+	const int N=2e5+9;
+	int a[N],m,v,p,n,ans,sum[N];
+	int main(){
+		n=read<int>(),m=read<int>(),v=read<int>(),ans=p=read<int>();
+		for(int i=1;i<=n;i++) a[i]=read<int>();
+		sort(a+1,a+n+1);
+		for(int i=1;i<=n;i++) sum[i]=sum[i-1]+a[i];
+	//	for(int i=1;i<=n;i++) cout<<a[i]<<"" "";cout<<endl;
+		for(int i=1;i<=n-p;i++){
+			if(m+a[i]<a[n-p+1]) continue;
+			else{
+				int tmp=(p-1+i)*m+((n-p+1-i)*(a[i]+m)-(sum[n-p+1]-sum[i]));
+			//	cout<<tmp<<endl;
+				if(tmp>=m*v) ans++;
+			}
+		}
+		printf(""%lld\n"",ans);
+		return 0;
+	}
+}
+#undef int
+int main(){
+#ifdef my
+	freopen("".in"",""r"",stdin);
+	freopen("".out"",""w"",stdout);
+#endif
+	return run::main();
+}","#include<bits/stdc++.h>
+typedef long long int lli;
+using namespace std;
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n,i;
+cin>>n;
+lli a[n],l;
+cin>>l;
+for(i=0;i<n;i++){
+    cin>>a[i];
+    
+}
+int val=0;
+int nonbreak=0;
+   for(i=0;i<n-1;i++){
+       if((a[i]+a[i+1])>=l){
+           val=1;
+           nonbreak=i+1;
+           break;
+           
+           
+       }
+   }
+   if(val==0) {cout<<""Impossible\n"";}
+   else{
+       cout<<""Possible\n"";
+       for(i=1;i<nonbreak;i++){
+           cout<<i<<""\n"";
+       }
+       for(i=n-1;i>=nonbreak;i--){cout<<i<<""\n"";}
+       
+   }
+   
+   
+	return 0;
+}
+",0
+./train_code/problem254/problem254_201.cpp,./train_code/problem485/problem485_216.cpp,"#include <iostream>
+#include <string>
+#include <vector>
+#include <bitset>
+#include <limits>
+
+using namespace std;
+
+using ll = long long;
+
+#define REP(i,n) for(ll i=0;i<(ll)(n);i++)
+#define REPD(i,n) for(ll i=n-1;i>=0;i--)
+#define FOR(i,a,b) for(ll i=a;i<=(ll)(b);i++)
+#define FORD(i,a,b) for(ll i=a;i>=(ll)(b);i--)
+
+#define input(...) __VA_ARGS__; in(__VA_ARGS__)
+
+template<class T>
+void print(vector<T> a) {
+  cout << ""[ "";
+  REP(i, a.size()) cout << a[i] << "" "";
+  cout << ""]"" << endl;
+}
+
+void print() {
+  std::cout << std::endl;
+}
+
+template <class Head, class... Tail>
+void print(Head&& head, Tail&&... tail) {
+  std::cout << head << "" "";
+  print(std::forward<Tail>(tail)...);
+}
+
+void in() { }
+
+template <class Head, class... Tail>
+void in(Head&& head, Tail&&... tail) {
+  cin >> head;
+  in(std::forward<Tail>(tail)...);
+}
+
+int main() {
+  int input(n, k);
+  vector<ll> a(n);
+  REP(i, n) cin >> a[i];
+
+  ll minv = numeric_limits<ll>::max();
+  REP(i, 1 << n) {
+    bitset<15> state(i);
+    state[0] = 1;
+    if (state.count() < k) continue;
+
+    ll p = 0;
+    ll cost = 0;
+    REP(j, 15) {
+      if (state[j]) {
+        if (p >= a[j]) {
+          cost += (p - a[j]) + 1;
+          p++;
+        }
+      }
+      p = max(p, a[j]);
+    }
+    minv = min(minv, cost);
+  }
+  cout << minv << endl;
+}
+","#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <set>
+#include <map>
+#include <iostream>
+#include <utility>
+#include <cctype>
+#include <queue>
+#include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <unordered_set>
+#include <unordered_map>
+#include <limits.h>
+#include <cstring>
+#include <tuple>
+#include <cassert>
+#include <numeric>
+using namespace std;
+// type alias
+typedef long long LL;
+typedef vector < int > VI;
+typedef unordered_map < int, int > MAPII;
+typedef unordered_set < int > SETI;
+typedef pair< int , int > II;
+typedef tuple< int, int, int > III;
+// repetition
+#define FORE(i,a,b) for(int i=(a);i<=(b);++i)
+#define REPE(i,n)  for(int i=0;i<=(n);++i)
+#define FOR(i,a,b) for(int i=(a);i<(b);++i)
+#define REP(i,n)  for(int i=0;i<(n);++i)
+#define FORR(x,arr) for(auto& x:arr)
+#define SZ(a) int((a).size())
+// DP
+#define MINUS(dp) memset(dp, -1, sizeof(dp))
+#define ZERO(dp) memset(dp, 0, sizeof(dp))
+// minmax
+#define SMAX(a,b) a = max(a,b)
+#define SMIN(a,b) a = min(a,b)
+// debug cerr
+#define TRACE true
+#define dump(x) if(TRACE) { cerr << #x << "" = "" << (x) << endl; }
+#define dump2(x,y) if(TRACE) { cerr << #x << "" = "" << (x) << "", "" << #y << "" = "" << (y) << endl; }
+#define dump3(x,y,z) if(TRACE) { cerr << #x << "" = "" << (x) << "", "" << #y << "" = "" << (y) << "", "" << #z << "" = "" << (z) << endl; }
+#define dump4(x,y,z,a) if(TRACE) { cerr << #x << "" = "" << (x) << "", "" << #y << "" = "" << (y) << "", "" << #z << "" = "" << (z) << "", "" << #a << "" = "" << (a) << endl; }
+#define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cerr << x << ','; } cerr << endl; }
+
+/*
+ 
+ 8/2/2018
+ 
+ 20:00-20:24 1WA
+ 21:15 give up
+ 
+ 21:15-21:30, 23:30- read editorials
+ 
+ Editorials:
+  - https://atcoder.jp/img/arc072/editorial.pdf
+  - https://youtu.be/j2o5c6Xp3xw?t=1763
+  - http://hamko.hatenadiary.jp/entry/2017/04/22/230513
+  - http://naoyat.hatenablog.jp/entry/ARC072D
+ 
+ I tried to find ""lose"" state. However no luck 😞
+ Making a table was a key to find out it.
+ 
+ I thought (1,0) is lose state. However (1,1) can happen. I wasted a lot of time. sigh 😞😞
+ 
+ x2=x1-2*i
+ y2=y1+i
+ 
+ => (y2-y1)/(x2-x1)=-1/2
+ 
+ x2=x1+i
+ y2=y1-2*i
+ 
+ => (y2-y1)/(x2-x1)=-2
+ 
+ Thus state transition happens like line with slope -1/2 or -2.
+ If we do experiment, it's like below:
+ 
+   0123456 X
+   ----------
+ 0|LLWWWWWWWW
+ 1|LLLWWWWWWW
+ 2|WLLLWWWWWW
+ 3|WWLLLWWWWW
+ 4|WWWLLLWWWW
+ 5|WWWWLLLWWW
+ 6|WWWWWLLLWW
+ 7|WWWWWWLLLW
+ 8|WWWWWWWLLL
+ 9|WWWWWWWWLL
+ Y
+ 
+ From this we figure out that |x-y|<=1 is ""lose"" state.
+ 
+ Summary:
+  - Not only looking at math property, do experiment for small N
+ 
+ */
+// $ g++ -std=c++14 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out
+//const int MAX_N=1e5+1;
+//LL A[MAX_N];
+LL X,Y;
+
+const string p1=""Alice"",p2=""Brown"";
+bool solve_wrong() {
+  LL maxn=max(X,Y);
+  if(maxn<2LL) return false;
+  if((X+Y)%2LL==0LL) return maxn>=2LL;
+  return maxn>=4LL;
+}
+
+bool solve() {
+  return abs(X-Y)>1;
+}
+
+int memo[101][101];
+int f(int x, int y) {
+  if(x+y<=1) return 0;
+  int &res=memo[x][y];
+  if(res>=0) return res;
+  SETI S;
+  for(int i=1; 2*i<=max(x,y); ++i) {
+    if(x-2*i>=0&&y+i<100) S.emplace(f(x-2*i,y+i));
+    if(y-2*i>=0&&x+i<100) S.emplace(f(x+i,y-2*i));
+  }
+  int mex=0;
+  while(S.count(mex)) ++mex;
+  return res=mex;
+}
+
+void test() {
+  MINUS(memo);
+  REP(x,100){
+    REP(y,100) {
+      cout<<(f(x,y)==0?'L':'W');
+    }
+    cout<<endl;
+  }
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(0);
+  
+//  test();
+  
+  cin>>X>>Y;
+  cout<<(solve()?p1:p2)<<endl;
+  
+  return 0;
+}
+",0
+./train_code/problem066/problem066_431.cpp,./train_code/problem066/problem066_25.cpp,"#include <stdio.h>
+main(){
+  int cur,a[5],i,max,tmp;
+  while( scanf(""%d%d%d%d%d"",&a[0],&a[1],&a[2],&a[3],&a[4]) !=EOF){
+  for(cur=0;cur<5;cur++){
+    max=cur;
+    for(i=cur;i<5;i++){
+      if(a[i]>a[max]){
+	max=i;
+      }
+    }
+    tmp=a[cur];
+    a[cur]=a[max];
+    a[max]=tmp;
+  }
+    printf(""%d %d %d %d %d\n"",a[0],a[1],a[2],a[3],a[4]);
+  }
+return 0; 
+}","#define _USE_MATH_DEFINES
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <math.h>
+#include <algorithm>
+#include <iomanip>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main(){
+	priority_queue<int> q;
+	for (int i = 0; i < 5; ++i) {
+		int a;
+		cin >> a;
+		q.push(a);
+	}
+	for (int i = 0; i < 5; ++i) {
+		cout << q.top();
+		if (i != 4) cout << ' ';
+		q.pop();
+	}
+	cout << endl;
+	return 0;
+}",1
+./train_code/problem328/problem328_356.cpp,./train_code/problem432/problem432_441.cpp,"#include<bits/stdc++.h>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+/**
+ * vector<int>ar(3);
+ * for(auto&e:ar){
+ *     scanf(""%d"",&e);
+ * }
+ * sort(ar.begin(),ar.end())
+ * int sum=accumulate(ar.begin(),ar.end(),0);
+ ***/
+
+int main(){
+    double pai=3.141592653589;
+    char w;
+    for(;;){
+        scanf(""%c"",&w);
+        if(w=='\n'){
+            break;
+        }else if(isupper(w)){
+            w=tolower(w);
+            printf(""%c"",w);
+        }else if(islower(w)){
+            w=toupper(w);
+            printf(""%c"",w);
+        }else{
+            printf(""%c"",w);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}","#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <tuple>
+#include <cassert>
+#include <functional>
+#include <set>
+#include <deque>
+#include <list>
+using namespace std;
+typedef long long ll;
+int dx[4] = {0,0,1,-1};
+int dy[4] = {1,-1,0,0};
+#define LNF __LONG_LONG_MAX__
+const ll MOD = 1000000007;
+const int MAX = 200000;
+
+long long fac[MAX], finv[MAX], inv[MAX];
+
+// テーブルを作る前処理
+void COMinit() {
+    fac[0] = fac[1] = 1;
+    finv[0] = finv[1] = 1;
+    inv[1] = 1;
+    for (int i = 2; i < MAX; i++){
+        fac[i] = fac[i - 1] * i % MOD;
+        inv[i] = MOD - inv[MOD%i] * (MOD / i) % MOD;
+        finv[i] = finv[i - 1] * inv[i] % MOD;
+    }
+}
+
+// 二項係数計算
+long long COM(int n, int k){
+    if (n < k) return 0;
+    if (n < 0 || k < 0) return 0;
+    return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
+}
+// 法mでのaの逆元を計算
+long long modinv(long long a, long long m) {
+    long long b = m, u = 1, v = 0;
+    while (b) {
+        long long t = a / b;
+        a -= t * b; swap(a, b);
+        u -= t * v; swap(u, v);
+    }
+    u %= m;
+    if (u < 0) u += m;
+    return u;
+}
+// a^n mod を計算する
+long long modpow(long long a, long long n, long long mod) {
+    long long res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+    }
+    return res;
+}
+//最大公約数
+long long gcd(long long x, long long y){
+    if(y==0) return x;
+    else return gcd(y,x%y);
+}
+//最小公倍数
+long long lcm(long long x, long long y){
+    return x / gcd(x, y) * y;
+}
+// nが大きく,kが10^7程度の時の二項係数
+long long com[200005];
+void combination(long long n,long long k){
+    com[0] = 1;
+    for(int i=1;i<=k;i++){
+        com[i] = (com[i-1]*(n-i+1)%MOD)*modinv(i,MOD)%MOD;
+    }
+}
+
+int main(){
+    int X,t; cin >> X >> t;
+    cout << max(0,X-t) << endl;
+    return 0;
+}
+",0
+./train_code/problem197/problem197_47.cpp,./train_code/problem197/problem197_225.cpp,"#include <iostream>
+
+using namespace std;
+
+void solve()
+{
+	int a[3];
+	for (int i = 0; i < 3; ++i)
+	{
+		cin >> a[i];
+	}
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = i + 1; j < 3; ++j)
+		{
+			if (a[j] < a[i])
+			{
+				int temp = a[j];
+				a[j] = a[i];
+				a[i] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		cout << a[i] << "" "";
+	}
+	cout << a[2] << endl;
+}
+
+int main()
+{
+	solve();
+	return(0);
+}","#include <iostream>
+using namespace std;
+int main() {
+  int x, y, z;
+  cin >> x >> y >> z;
+  int a;
+  while (x>y || x>z) {
+    a=x;
+    x=y;
+    y=z;
+    z=a;
+  }
+  while (y>z) {
+    a=y;
+    y=z;
+    z=a;
+  }
+  cout << x << "" "" << y << "" "" << z << endl;
+}",1
+./train_code/problem196/problem196_171.cpp,./train_code/problem139/problem139_325.cpp,"#include <iostream>
+#include <map>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+#define ll long long
+
+int main()
+{
+    int N, M;
+    std::cin >> N >> M;
+
+    int sum1 = N * (N-1) / 2;
+    int sum2 = M * (M-1) / 2;
+
+    int sum = sum1 + sum2;
+
+    std::cout << sum << std::endl;
+}","#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define endl '\n'
+ 
+pair<int, int> join(pair<int, int> a, const pair<int, int> &b)
+{
+    for (int x : {b.first, b.second})
+    {
+        if (a.first < x) swap(a.first, x);
+        if (a.second < x) swap(a.second, x);
+    }
+    return a;
+}
+ 
+int main()
+{
+#ifdef jcg
+    assert(freopen(""input.in"", ""r"", stdin));
+//    assert(freopen(""output.out"", ""w"", stdout));
+#endif
+ 
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int N;
+    cin >> N;
+ 
+    N = 1 << N;
+ 
+    vector<pair<int, int>> a(N);
+    for (auto &p : a)
+        cin >> p.first;
+ 
+    for (int m, mh = 1; (m = mh << 1) <= N; mh = m)
+        for (int i = 0; i < N; i += m)
+            for (int j = i; j < i + mh; ++j)
+                a[j + mh] = join(a[j + mh], a[j]);
+ 
+    int best = 0;
+    for (int i = 1; i < N; ++i)
+        cout << (best = max(best, a[i].first + a[i].second)) << endl;
+ 
+    return 0;
+}",0
