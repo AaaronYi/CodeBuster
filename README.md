@@ -1,5 +1,7 @@
 ## Code Plagiarism Detector
 
+Note: not all files could be uploaded due to file size limmitations on GitHub.
+
 **Overview**
 Academic dishonesty in programming courses is evolving. Students now disguise plagiarism with methods like variable renaming, loop/recursion swaps, or library substitution.  
 This project builds a multilayered AI system that catches plagiarism at different levels:
